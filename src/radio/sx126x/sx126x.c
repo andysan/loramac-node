@@ -98,7 +98,9 @@ void SX126xInit( DioIrqHandler dioIrq )
     // Initialize TCXO control
     SX126xIoTcxoInit( );
 
+#ifndef __ZEPHYR__
     SX126xSetDio2AsRfSwitchCtrl( true );
+#endif
     SX126xSetOperatingMode( MODE_STDBY_RC );
 }
 
