@@ -37,10 +37,14 @@ typedef struct
     uint8_t       Value;                            //!< The value of the register
 }RadioRegisters_t;
 
+#ifndef __ZEPHYR__
+
 /*!
  * \brief Holds the internal operating mode of the radio
  */
 static RadioOperatingModes_t OperatingMode;
+
+#endif /* __ZEPHYR__ */
 
 /*!
  * \brief Stores the current packet type set in the radio
@@ -104,6 +108,8 @@ void SX126xInit( DioIrqHandler dioIrq )
     SX126xSetOperatingMode( MODE_STDBY_RC );
 }
 
+#ifndef __ZEPHYR__
+
 RadioOperatingModes_t SX126xGetOperatingMode( void )
 {
     return OperatingMode;
@@ -131,6 +137,8 @@ void SX126xSetOperatingMode( RadioOperatingModes_t mode )
     }
 #endif
 }
+
+#endif /* __ZEPHYR__ */
 
 void SX126xCheckDeviceReady( void )
 {
