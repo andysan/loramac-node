@@ -341,6 +341,10 @@ void SX126xSetCad( void )
 
 void SX126xSetTxContinuousWave( void )
 {
+#ifdef __ZEPHYR__
+    SX126xSetOperatingMode( MODE_TX );
+#endif
+
     SX126xWriteCommand( RADIO_SET_TXCONTINUOUSWAVE, 0, 0 );
 }
 
